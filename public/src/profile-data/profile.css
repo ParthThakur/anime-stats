@@ -1,0 +1,8 @@
+.anime-list{
+    margin-block-end: 0em;
+    padding-bottom: 1em;
+}
+.anime-list-data {
+    max-height: 75vh;
+    overflow-y: scroll;
+}

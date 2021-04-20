@@ -1,0 +1,12 @@
+.flex-tut-main{
+    display: flex;
+    border:3px solid black;
+    flex-direction: column-reverse;
+    /* flex-wrap: wrap; */
+    /* justify-content: end; */
+    
+}
+.food-box{
+    font: 2em;
+    padding:15px;
+ }

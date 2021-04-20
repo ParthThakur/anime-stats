@@ -1,0 +1,35 @@
+.dashboard{
+  background-color: rgb(179, 254, 255);
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  /* height: 100vh; */
+}
+
+.dashboard-container {
+  height: auto;
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+
+.dashboard-top-bar{
+  width:100vw;
+}
+
+.top-bar-heading{
+  padding-left: 1vw;
+  padding-right: 1vw;
+  flex-grow: 1;
+}
+/* root: {
+  padding: '2px 4px',
+  display: 'flex',
+  alignItems: 'center',
+  width: 400,
+} */
+.search-username {
+  margin-left: 1vw;
+  color:gainsboro !important;
+}
+.search-username-icon{
+  color:gainsboro !important;
+  padding: 10;
+}
