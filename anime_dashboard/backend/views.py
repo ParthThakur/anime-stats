@@ -10,7 +10,9 @@ import itertools
 import requests
 import json
 import asyncio
-from pathlib import Path
+from datetime import datetime, timedelta
+
+DATETIME_FORMAT = '%m/%d/%Y, %H:%M:%S, %Z%z'
 
 
 def get_user_list(username, refresh=False):
@@ -28,14 +30,14 @@ def get_user_list(username, refresh=False):
 
         with open(f'data/anime_lists/{username}.json', 'w') as fw:
             json.dump({'anime_list': ani_list,
-                      'last_updated': timezone.now().strftime("%m/%d/%Y, %H:%M:%S")}, fw)
+                       'last_updated': timezone.now().strftime(DATETIME_FORMAT)}, fw)
         return ani_list
 
     else:
         try:
             with open(f'data/anime_lists/{username}.json', 'r') as fr:
                 data = json.load(fr)
-                return data['anime_list']
+                return data['anime_list'], datetime.strptime(data['last_updated'], DATETIME_FORMAT)
         except FileNotFoundError:
             return get_user_list(username, refresh=True)
 
@@ -44,8 +46,16 @@ class UserList(APIView):
 
     def get(self, request, format=None):
         username = request.GET.get('username')
+        refresh = True if request.GET.get('refresh') == "true" else False
         if username is not None:
-            anilist = get_user_list(username)
+            if refresh:
+                anilist, last_updated = get_user_list(username, refresh=False)
+                if last_updated + timedelta(seconds=3600) > timezone.now():
+                    return Response({'anilist': anilist,
+                                     'error_message': 'Can\'t refresh within 1 hour of last refresh.'},
+                                    status=status.HTTP_403_FORBIDDEN)
+
+            anilist = get_user_list(username, refresh=refresh)
             return Response({'anilist': anilist}, status=status.HTTP_200_OK)
         else:
             return Response({'Error': 'Invalid request'},
