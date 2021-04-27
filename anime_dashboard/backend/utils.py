@@ -1,3 +1,5 @@
+from django.utils import timezone
+
 import itertools
 import requests
 import json
