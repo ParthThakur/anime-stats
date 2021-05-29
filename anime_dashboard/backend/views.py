@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.utils import timezone
+from requests.sessions import session
 
 from rest_framework import generics, status
 from rest_framework.views import APIView
@@ -37,7 +38,8 @@ class GetInfo(APIView):
 
     def get(self, request, page, id, format=None):
         if id is not None:
-            return Response(*get_info(id, page))
+            data, status_code = get_info(id, page)
+            return Response(data, status=status_code)
         else:
             return Response({'Error': 'Invalid request'},
                             status=status.HTTP_400_BAD_REQUEST)
