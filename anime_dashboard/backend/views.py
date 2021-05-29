@@ -14,8 +14,7 @@ from .utils import get_info
 
 class UserList(APIView):
 
-    def get(self, request, format=None):
-        username = request.GET.get('username')
+    def get(self, request, username, format=None):
         refresh = True if request.GET.get('refresh') == "true" else False
         if username is not None:
             if refresh:
