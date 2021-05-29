@@ -4,34 +4,36 @@ API backend to get user data from MyAnimeList.net
 
 ## Implemented Calls:
 
-#### Get user's entire anime list:
-
-```html
-/backend/getAnimeList
-```
-
-#### URL Paameters:
+### Get user's entire anime or manga list:
 
 ```
-username: string (Required, MyAnimeList username)
-refresh: bool (Optional, Refresh Anime List)
+/backend/animelist/{MAL username}
+
+/backend/mangalist/{MAL username}
 ```
 
-> Note: Anime list can be refreshed only once every hour.
+> Note: Anime list is refreshed only once every hour.
 
-#### Response:
-
-##### JSON:
+##### Response (JSON):
 
 ```json
 {
-    'anilist': <list>
-    'error_message': Explanation of error if exists.
+    "request_cached": bool,
+    "request_cache_expiry": int (seconds),
+    "anime" | "manga": list[ dict ]
 }
 ```
 
-#### Example api call:
+##### Example api call:
 
 ```
-/backend/getAnimeList?username=mal_user&refresh=true
+/backend/animelist/Firo_
+```
+
+### Get Anime or Manga Details
+
+```
+/backend/anime/{id}(/detail_type)
+
+/backend/manga/{id}(/detail_type)
 ```
