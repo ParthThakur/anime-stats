@@ -36,9 +36,9 @@ class UserList(APIView):
 
 class GetInfo(APIView):
 
-    def get(self, request, page, id, format=None):
+    def get(self, request, page, id, detail=None, format=None):
         if id is not None:
-            data, status_code = get_info(id, page)
+            data, status_code = get_info(id, page, detail)
             return Response(data, status=status_code)
         else:
             return Response({'Error': 'Invalid request'},

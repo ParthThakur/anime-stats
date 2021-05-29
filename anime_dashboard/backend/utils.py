@@ -37,6 +37,9 @@ def get_user_list(username, refresh=False):
             return get_user_list(username, refresh=True)
 
 
-def get_info(id: int, page: str) -> dict:
-    data = requests.get(f'{JIKAN_BASE_URL}/{page}/{id}')
+def get_info(id: int, page: str, detail: str = None) -> dict:
+    request_url = f'{JIKAN_BASE_URL}/{page}/{id}/'
+    if detail is not None:
+        request_url += detail
+    data = requests.get(request_url)
     return data.json(), data.status_code
