@@ -1,8 +1,9 @@
-from django.urls import path
+from django.urls import path, re_path
 from .views import GetInfo, UserList
 
 urlpatterns = [
-    path('<str:list_type>/<str:username>', UserList.as_view()),
+    re_path(r'^(?P<list_type>animelist|mangalist)/(?P<username>.+)/$',
+            UserList.as_view()),
     path('<str:page>/<int:id>', GetInfo.as_view()),
     path('<str:page>/<int:id>/<str:detail>', GetInfo.as_view()),
 ]
