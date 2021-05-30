@@ -4,7 +4,7 @@
   "description": "Frontend to the Anime Dashboard app.",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --watch",
+    "dev": "webpack --mode development --watch",
     "build": "webpack --mode production"
   },
   "repository": {

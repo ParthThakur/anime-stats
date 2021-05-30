@@ -1,11 +1,12 @@
 const path = require("path");
+const { env } = require("process");
 const webpack = require("webpack");
 
 module.exports = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "./static/frontend"),
-    filename: "[name]-[hash].js",
+    filename: "[name].js",
   },
   module: {
     rules: [
@@ -19,7 +20,7 @@ module.exports = {
     ],
   },
   optimization: {
-    minimize: NODE_ENV === "production",
+    minimize: env.production ? true : false,
   },
   plugins: [],
 };
