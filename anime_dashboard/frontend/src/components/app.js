@@ -2,15 +2,16 @@ import React from "react";
 import { render } from "react-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import Homepage from "./homepage";
+import Header from "./header";
 
 export default function App(props) {
   return (
     <div className="app-inner-container">
       <Router>
-        <Switch>
-          <Route exact path="/" component={Homepage}></Route>
-        </Switch>
+        <div>
+          <Header />
+          <Switch></Switch>
+        </div>
       </Router>
     </div>
   );
