@@ -1,11 +1,17 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 
 export default function Header(props) {
   const [username, setUsername] = useState(null);
+  const history = useHistory();
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
+  };
+
+  const submitButtonClicked = (event) => {
+    history.push(`/user/${username}`);
   };
 
   return (
@@ -30,7 +36,7 @@ export default function Header(props) {
               <button
                 type="submit"
                 className="username submit"
-                onClick={() => {}}
+                onClick={submitButtonClicked}
               >
                 Send
               </button>

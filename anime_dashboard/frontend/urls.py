@@ -4,5 +4,5 @@ from .views import index
 
 urlpatterns = [
     path('', index),
-    path('<str:page>', index),
+    path('user/<str:username>', index),
 ]
