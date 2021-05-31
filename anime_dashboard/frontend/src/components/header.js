@@ -1,10 +1,27 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Grid } from "@material-ui/core";
+
+import { Grid, Button } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
+
+const useStyles = makeStyles({
+  button: {
+    fontSize: "auto",
+    color: "#aaa",
+    border: 0,
+    borderRadius: 8,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "#f4f4f4",
+    boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.15)",
+  },
+});
 
 export default function Header(props) {
-  const [username, setUsername] = useState(null);
+  const [username, setUsername] = useState("");
   const history = useHistory();
+
+  const classes = useStyles();
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -33,13 +50,13 @@ export default function Header(props) {
               />
             </Grid>
             <Grid item xs={2}>
-              <button
-                type="submit"
-                className="username submit"
+              <Button
+                className={`username ${classes.button}`}
                 onClick={submitButtonClicked}
+                variant="contained"
               >
-                Send
-              </button>
+                Check
+              </Button>
             </Grid>
           </Grid>
         </form>

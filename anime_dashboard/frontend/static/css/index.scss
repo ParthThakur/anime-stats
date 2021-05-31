@@ -37,8 +37,7 @@ header {
     padding-right: 30px;
     padding-left: 30px;
 
-    .field,
-    .submit {
+    .field {
       appearance: none;
       background: none;
       border: none;
@@ -68,12 +67,6 @@ header {
         color: #fff;
         background-color: $SECONDARY_COLOR;
         box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-      }
-    }
-
-    .submit {
-      &:focus {
-        background-color: $SECONDARY_COLOR;
       }
     }
   }
