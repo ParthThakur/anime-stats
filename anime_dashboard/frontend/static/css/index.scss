@@ -5,7 +5,9 @@ $SECONDARY_COLOR: #313131;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
 
+body {
   font-family: "Roboto", sans-serif;
 }
 
@@ -17,6 +19,7 @@ header {
     color: #919191;
     font-size: 42px;
     font-weight: 400;
+    font-family: "Roboto Condensed", sans-serif;
     margin-bottom: 30px;
     text-align: center;
     text-transform: uppercase;
